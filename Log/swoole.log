@@ -1,0 +1,12 @@
+[2019-02-19 16:03:05 #68838.0]	WARNING	swProtocol_recv_check_length: package is too big, remote_addr=127.0.0.1:58555, length=1195725860.
+[2019-02-19 16:03:05 *68848.0]	NOTICE	swFactoryProcess_finish (ERROR 1004): send 72 byte failed, because connection[fd=1] is closed.
+[2019-02-19 16:03:05 #68838.0]	WARNING	swProtocol_recv_check_length: package is too big, remote_addr=127.0.0.1:58556, length=1195725860.
+[2019-02-19 18:16:35 $70003.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:20:19 $70003.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:20:33 $70003.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:20:47 $70003.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:20:53 $70003.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:21:02 $70003.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:21:18 $70003.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:21:29 $70003.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:21:54 $70003.0]	NOTICE	Server is reloading all workers now.
