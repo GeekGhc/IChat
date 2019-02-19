@@ -10,3 +10,47 @@
 [2019-02-19 18:21:18 $70003.0]	NOTICE	Server is reloading all workers now.
 [2019-02-19 18:21:29 $70003.0]	NOTICE	Server is reloading all workers now.
 [2019-02-19 18:21:54 $70003.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:33:03 $70375.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:33:36 $70375.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:35:47 $70375.0]	WARNING	swManager_check_exit_status: worker#2 abnormal exit, status=255, signal=0
+[2019-02-19 18:36:18 $70375.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:36:32 $70375.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:36:43 $70375.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:36:48 $70375.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_killTimeout: kill(70546, SIGKILL) [1].
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_killTimeout: kill(70547, SIGKILL) [2].
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_killTimeout: kill(70548, SIGKILL) [3].
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_killTimeout: kill(70549, SIGKILL) [4].
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_killTimeout: kill(70550, SIGKILL) [5].
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_killTimeout: kill(70551, SIGKILL) [6].
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_killTimeout: kill(70552, SIGKILL) [7].
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_killTimeout: kill(70553, SIGKILL) [8].
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_killTimeout: kill(70554, SIGKILL) [9].
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_killTimeout: kill(70555, SIGKILL) [10].
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_killTimeout: kill(70556, SIGKILL) [11].
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_killTimeout: kill(70557, SIGKILL) [12].
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_killTimeout: kill(70558, SIGKILL) [13].
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_killTimeout: kill(70559, SIGKILL) [14].
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_killTimeout: kill(70560, SIGKILL) [15].
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_check_exit_status: worker#12 abnormal exit, status=0, signal=9
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_check_exit_status: worker#15 abnormal exit, status=0, signal=9
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_check_exit_status: worker#14 abnormal exit, status=0, signal=9
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_check_exit_status: worker#13 abnormal exit, status=0, signal=9
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_check_exit_status: worker#11 abnormal exit, status=0, signal=9
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_check_exit_status: worker#10 abnormal exit, status=0, signal=9
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_check_exit_status: worker#9 abnormal exit, status=0, signal=9
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_check_exit_status: worker#8 abnormal exit, status=0, signal=9
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_check_exit_status: worker#7 abnormal exit, status=0, signal=9
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_check_exit_status: worker#6 abnormal exit, status=0, signal=9
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_check_exit_status: worker#5 abnormal exit, status=0, signal=9
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_check_exit_status: worker#4 abnormal exit, status=0, signal=9
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_check_exit_status: worker#3 abnormal exit, status=0, signal=9
+[2019-02-19 18:36:48 $70375.0]	WARNING	swManager_check_exit_status: worker#2 abnormal exit, status=0, signal=9
+[2019-02-19 18:36:58 $70375.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:37:43 $70375.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:38:08 $70375.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:38:16 $70375.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:39:45 $70375.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:40:29 $70375.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 18:51:09 $70375.0]	NOTICE	Server is reloading all workers now.
+[2019-02-19 21:26:20 $70375.0]	NOTICE	Server is reloading all workers now.

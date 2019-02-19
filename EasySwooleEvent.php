@@ -22,6 +22,7 @@ class EasySwooleEvent implements Event
     {
         // TODO: Implement initialize() method.
         date_default_timezone_set('Asia/Shanghai');
+        self::loadConf();
     }
 
     public static function mainServerCreate(EventRegister $register)
@@ -40,5 +41,18 @@ class EasySwooleEvent implements Event
     public static function afterRequest(Request $request, Response $response): void
     {
         // TODO: Implement afterAction() method.
+    }
+
+    public static function loadConf(){
+        $files = File::scanDirectory(EASYSWOOLE_ROOT . '/App/Conf');
+        if (is_array($files)) {
+            foreach ($files['files'] as $file) {
+                $fileNameArr = explode('.', $file);
+                $fileSuffix = end($fileNameArr);
+                if ($fileSuffix == 'php') {
+                    Config::getInstance()->loadFile($file);//引入之后,文件名自动转为小写,成为配置的key
+                }
+            }
+        }
     }
 }
