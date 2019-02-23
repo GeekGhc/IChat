@@ -2,6 +2,8 @@
 ### Composer template
 composer.phar
 /vendor/
+/Log
+/Temp
 /easyswoole
 .idea
 dev.env
