@@ -11,7 +11,7 @@ return [
     'MAIN_SERVER' => [
         'LISTEN_ADDRESS' => '0.0.0.0',
         'PORT' => 9501,
-        'SERVER_TYPE' => EASYSWOOLE_WEB_SERVER, //可选为 EASYSWOOLE_SERVER  EASYSWOOLE_WEB_SERVER EASYSWOOLE_WEB_SOCKET_SERVER
+        'SERVER_TYPE' => EASYSWOOLE_WEB_SOCKET_SERVER, //可选为 EASYSWOOLE_SERVER  EASYSWOOLE_WEB_SERVER EASYSWOOLE_WEB_SOCKET_SERVER
         'SOCK_TYPE' => SWOOLE_TCP,
         'RUN_MODEL' => SWOOLE_PROCESS,
         'SETTING' => [
@@ -51,9 +51,5 @@ return [
     'SYSTEM'=>[
         'WS_SERVER_PATH'=>'ws://127.0.0.1:9501',
         'LAST_MESSAGE_MAX'=>10
-    ],
-    'REDIS'=>[
-        'HOST'=>'127.0.0.1',
-        'PORT'=>6379
     ]
 ];
