@@ -10,11 +10,11 @@ class RedisPool extends AbstractPool
     {
         // TODO: Implement createObject() method.
         $redis = new RedisPoolObject();
-        $conf = Config::getInstance()->getConf('REDIS');
-        $redis->connect($conf['HOST'],$conf['PORT']);
+        $conf = Config::getInstance()->getConf('redis');
+        $redis->connect($conf['host'],$conf['port']);
         $redis->setOption(\Redis::OPT_SERIALIZER, \Redis::SERIALIZER_PHP);
-        if (!empty($conf['AUTH'])) {
-            $redis->auth($conf['AUTH']);
+        if (!empty($conf['auth'])) {
+            $redis->auth($conf['auth']);
         }
         return $redis;
     }

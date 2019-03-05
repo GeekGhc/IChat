@@ -2,6 +2,7 @@
 
 namespace App\HttpController;
 
+use EasySwoole\EasySwoole\Config;
 use EasySwoole\Http\AbstractInterface\Controller;
 use EasySwoole\Trace\Logger;
 
@@ -27,6 +28,9 @@ class Index extends Controller
 
     function test()
     {
+        $conf = Config::getInstance()->getConf('redis');
+//        var_dump("ddd");
+//        var_dump($conf);
         $content = file_get_contents(__DIR__."/../Views/websocket.php");
         $this->response()->write($content);
     }
