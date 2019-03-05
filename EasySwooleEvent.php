@@ -10,6 +10,7 @@ namespace EasySwoole\EasySwoole;
 
 
 use App\Process\HotReload;
+use App\WebSocket\WebSocketEvents;
 use App\WebSocket\WebSocketParser;
 use EasySwoole\EasySwoole\Swoole\EventRegister;
 use EasySwoole\EasySwoole\AbstractInterface\Event;
@@ -46,6 +47,9 @@ class EasySwooleEvent implements Event
         $register->set(EventRegister::onMessage,function(\swoole_server $server,\swoole_websocket_frame $frame) use ($dispatcher){
             $dispatcher->dispatch($server,$frame->data,$frame);
         });
+        //连接打开和关闭的处理
+        $register->set(EventRegister::onOpen,[WebSocketEvents::class,'onOpen']);
+//        $register->set(EventRegister::onClose,[WebSocketEvents::class,'onClose']);
     }
 
     public static function onRequest(Request $request, Response $response): bool

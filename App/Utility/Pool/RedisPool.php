@@ -1,7 +1,6 @@
 <?php
 namespace App\Utility\Pool;
 
-
 use EasySwoole\Component\Pool\AbstractPool;
 use EasySwoole\EasySwoole\Config;
 
