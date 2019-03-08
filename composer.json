@@ -18,7 +18,8 @@
         "easyswoole/easyswoole": "3.x-dev",
         "easyswoole/swoole-ide-helper": "^1.0",
         "illuminate/database": "^5.7",
-        "duncan3dc/blade": "^4.4"
+        "duncan3dc/blade": "^4.4",
+        "easyswoole/mysqli": "^1.1"
     },
     "require-dev": {
         "composer/composer": "^1.6"
