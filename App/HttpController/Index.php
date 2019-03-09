@@ -2,7 +2,11 @@
 
 namespace App\HttpController;
 
+use App\Utility\Pool\MysqlPool;
+use App\Utility\Pool\MysqlPoolObject;
+use App\Utility\Pool\RedisPool;
 use EasySwoole\Component\AtomicManager;
+use EasySwoole\Component\Pool\PoolManager;
 use EasySwoole\EasySwoole\Config;
 use EasySwoole\EasySwoole\Swoole\Task\TaskManager;
 use EasySwoole\Http\AbstractInterface\Controller;
@@ -58,12 +62,12 @@ class Index extends Controller
 //        $atomic->add(5);
 //        $this->response()->write($atomic->get());
 
-        $container = new \EasySwoole\Component\Container();
-        $container->set("OnOpen",function (){
-            echo "onOpen事件回调";
-        });
-        $container->set("name",'仙士可');
-        call_user_func($container->get("OnOpen"));
+//        $container = new \EasySwoole\Component\Container();
+//        $container->set("OnOpen",function (){
+//            echo "onOpen事件回调";
+//        });
+//        $container->set("name",'GeekGhc');
+//        call_user_func($container->get("OnOpen"));
 
     }
 }
