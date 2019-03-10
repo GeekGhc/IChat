@@ -9,25 +9,30 @@
 namespace App\WebSocket;
 
 
+use App\Task\BroadcastTask;
 use App\Utility\App;
 use App\Utility\Pool\RedisPool;
 use App\Utility\Pool\RedisPoolObject;
+use App\WebSocket\Actions\Broadcast\BroadcastAdmin;
+use App\WebSocket\Actions\User\UserInRoom;
+use App\WebSocket\Actions\User\UserOutRoom;
 use EasySwoole\Component\Pool\PoolManager;
+use EasySwoole\EasySwoole\Config;
 use EasySwoole\EasySwoole\Logger;
+use EasySwoole\EasySwoole\Swoole\Task\TaskManager;
 
 class WebSocketEvents
 {
     /**
      * 打开链接时  将用户fd存入Redis
-     * @param \swoole\server $server
+     * @param \swoole_server $server
      * @param \swoole_http_request $req
      * @throws \Exception
      */
-    static function onOpen(\swoole\server $server,\swoole_http_request $req){
+    static function onOpen(\swoole_server $server,\swoole_http_request $req){
         $redisPool = PoolManager::getInstance()->getPool(RedisPool::class);
         $redis = $redisPool->getObj();
         $username = $req->get['username']??'游客' . str_pad($req->fd, 4, '0', STR_PAD_LEFT);
-//        Logger::getInstance()->log("username = ".$username);
         if($redis instanceof RedisPoolObject){
             $info = self::mockUser($req->fd,$username);
             $redis->hSet(APP::REDIS_ONLINE_KEY,$req->fd,$info);
@@ -35,17 +40,54 @@ class WebSocketEvents
             $count = $redis->get(APP::SYSTEM_CON_COUNT_KEY);
 
             //全频道通知新用户上线
+            $message = new UserInRoom();
+            $message->setInfo($info);
+            TaskManager::async(new BroadcastTask(['payload'=>$message->__toString(),'fromFd'=>$req->fd]));
 
+            if(empty($req->get['is_reconnection']) || $req->get['is_reconnection']=='0'){
+                //发送最后的n条消息
+                $last_message_max = Config::getInstance()->getConf('SYSTEM.LAST_MESSAGE_MAX');
+                $lastMessage = $redis->lRange(APP::REDIS_LAST_MESSAGE_KEY,0,$last_message_max);
+                for($i = count($lastMessage)-1;$i>0;$i--){
+                    $server->push($req->fd,$lastMessage[$i]);
+                }
+
+                //对用户单独发送欢迎消息
+                $runDays = intval((time()-($redis->get(APP::SYSTEM_RUNTIME_KEY)))/86400);
+                $message = new BroadcastAdmin();
+                $message->setContent("{$username}，欢迎乘坐EASYSWOOLE号特快列车，列车已稳定运行{$runDays}天，共计服务{$count}人次，请系好安全带，文明乘车");
+                $server->push($req->fd,$message->__toString());
+            }
         }else{
             throw new \Exception('Redis pool is empty');
         }
     }
 
-    static function onClose(\swooler\server $server,int $fd,int $reactorId){
+    /**
+     * 关闭用户连接 将用户fd从redis中删除
+     * @param \swoole_server $server
+     * @param int $fd
+     * @param int $reactorId
+     * @throws \Exception
+     */
+    static function onClose(\swoole_server $server,int $fd,int $reactorId){
         $info = $server->connection_info($fd);
         if($info['websocket_status']!==0){
             $redisPool = PoolManager::getInstance()->getPool(RedisPool::class);
             $redis = $redisPool->getObj();
+            if($redis instanceof RedisPoolObject){
+                $redis->hDel(APP::REDIS_ONLINE_KEY,$fd);
+
+                //通知其他用户已下线
+                $message = new UserOutRoom();
+                $message->setUserFd($fd);
+                TaskManager::async(new BroadcastTask(['payload'=>$message->__toString(),'fromFd'=>$fd]));
+
+                $redisPool->recycleObj($redis);
+                echo "websocket user {$fd} was close\n";
+            }else{
+                throw new \Exception('Redis pool is empty');
+            }
         }
     }
 
@@ -59,10 +101,15 @@ class WebSocketEvents
         if ($redis instanceof RedisPoolObject) {
             $redis->set(App::SYSTEM_RUNTIME_KEY,time());
             $redis->del(APP::SYSTEM_CON_COUNT_KEY);
+            if($redis->exists(APP::REDIS_ONLINE_KEY)){
+                $clear =  $redis->del(APP::REDIS_ONLINE_KEY);
+                $status = $clear?'success':'failed';
+                echo "Redis online user clear {$status}\n";
+            }
+            $redisPool->recycleObj($redis);
         }else{
             throw new \Exception('Redis pool is empty');
         }
-
     }
 
     /**

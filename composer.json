@@ -19,7 +19,8 @@
         "easyswoole/swoole-ide-helper": "^1.0",
         "illuminate/database": "^5.7",
         "duncan3dc/blade": "^4.4",
-        "easyswoole/mysqli": "^1.1"
+        "easyswoole/mysqli": "^1.1",
+        "ext-json": "^1.6"
     },
     "require-dev": {
         "composer/composer": "^1.6"
