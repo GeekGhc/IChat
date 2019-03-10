@@ -56,6 +56,9 @@ class EasySwooleEvent implements Event
         // TODO: Implement afterAction() method.
     }
 
+    /**
+     * 加载配置文件
+     */
     public static function loadConf(){
         $files = File::scanDirectory(EASYSWOOLE_ROOT . '/App/Conf');
         if (is_array($files)) {

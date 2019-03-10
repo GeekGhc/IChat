@@ -2,6 +2,8 @@
 
 namespace App\WebSocket\Controller;
 
+use App\Utility\App;
+use App\WebSocket\Actions\User\UserOnline;
 use EasySwoole\EasySwoole\ServerManager;
 use EasySwoole\EasySwoole\Swoole\Task\TaskManager;
 
@@ -29,5 +31,21 @@ Class Index extends Base{
                $i++;
            }
         });
+    }
+
+    function info(){
+        $info = $this->currentUser();
+        if($info){
+            // todo
+        }
+    }
+
+    function online(){
+        $list = $this->redis()->hGetAll(App::REDIS_ONLINE_KEY);
+        if($list){
+            $message = new UserOnline();
+            $message->setList($list);
+            $this->response()->setMessage($message);
+        }
     }
 }

@@ -12,6 +12,7 @@ use EasySwoole\EasySwoole\Swoole\Task\AbstractAsyncTask;
 Class BroadcastTask extends AbstractAsyncTask{
 
     /**
+     * 任务投递
      * @param $taskData
      * @param $taskId
      * @param $fromWorkerId
