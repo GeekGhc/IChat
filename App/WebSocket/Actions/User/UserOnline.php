@@ -1,7 +1,6 @@
 <?php
 namespace App\WebSocket\Actions\User;
 
-
 use App\WebSocket\Actions\ActionPayload;
 use App\WebSocket\WebSocketAction;
 

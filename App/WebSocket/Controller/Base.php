@@ -22,7 +22,7 @@ Class Base extends Controller{
             if($redisPoolObject instanceof RedisPoolObject){
                 $this->redis = $redisPoolObject;
             }else{
-                throw new \Exception("Get redis failes");
+                throw new \Exception("Get redis failed");
             }
         }
         return $this->redis;
