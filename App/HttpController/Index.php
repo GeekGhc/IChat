@@ -2,10 +2,12 @@
 
 namespace App\HttpController;
 
+use App\Task\NotifyTask;
 use App\Utility\Pool\MysqlPool;
 use App\Utility\Pool\MysqlPoolObject;
 use App\Utility\Pool\RedisPool;
 use EasySwoole\Component\AtomicManager;
+use EasySwoole\Component\Di;
 use EasySwoole\Component\Pool\PoolManager;
 use EasySwoole\EasySwoole\Config;
 use EasySwoole\EasySwoole\Swoole\Task\TaskManager;
