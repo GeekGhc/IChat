@@ -5,6 +5,7 @@ namespace App\WebSocket\Controller;
 use App\Utility\App;
 use App\WebSocket\Actions\User\UserInfo;
 use App\WebSocket\Actions\User\UserOnline;
+use EasySwoole\EasySwoole\Logger;
 use EasySwoole\EasySwoole\ServerManager;
 use EasySwoole\EasySwoole\Swoole\Task\TaskManager;
 
@@ -42,6 +43,8 @@ Class Index extends Base{
         if($info){
             // todo
             $message = new UserInfo();
+            Logger::getInstance()->log("info.....");
+            Logger::getInstance()->log(json_encode($info));
             $message->setIntro($info['intro']);
             $message->setUserFd($info['userFd']);
             $message->setAvatar($info['avatar']);

@@ -1,7 +1,6 @@
 <?php
 namespace App\WebSocket\Controller;
 
-
 use App\Task\BroadcastTask;
 use App\WebSocket\Actions\Broadcast\BroadcastMessage;
 use EasySwoole\EasySwoole\Swoole\Task\TaskManager;

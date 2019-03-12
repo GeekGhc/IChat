@@ -34,6 +34,7 @@ Class WebSocketParser implements ParserInterface
             $caller->setAction($action);
             $caller->setArgs($params);
         }else{
+            //如果是心跳测试则直接返回PONG
             $caller->setControllerClass("\\App\\WebSocket\\Controller\\Index");
             $caller->setAction('heartbeat');
         }

@@ -1,10 +1,11 @@
 <?php
 namespace EasySwoole\EasySwoole;
 
-
 use App\Process\HotReload;
+use App\Utility\Pool\RedisPool;
 use App\WebSocket\WebSocketEvents;
 use App\WebSocket\WebSocketParser;
+use EasySwoole\Component\Pool\PoolManager;
 use EasySwoole\EasySwoole\Swoole\EventRegister;
 use EasySwoole\EasySwoole\AbstractInterface\Event;
 use EasySwoole\Http\Request;
@@ -28,6 +29,7 @@ class EasySwooleEvent implements Event
         $swooleServer = ServerManager::getInstance()->getSwooleServer();
         $swooleServer->addProcess((new HotReload('HotReload',['disableInotify' => false]))->getProcess());
 
+        PoolManager::getInstance()->register(RedisPool::class,20);
         //创建一个 Dispatcher 服务
         $conf = new \EasySwoole\Socket\Config();
         //设置dispatcher 为socket 模式
@@ -42,7 +44,14 @@ class EasySwooleEvent implements Event
         });
         //连接打开和关闭的处理
         $register->set(EventRegister::onOpen,[WebSocketEvents::class,'onOpen']);
-//        $register->set(EventRegister::onClose,[WebSocketEvents::class,'onClose']);
+        $register->set(EventRegister::onClose,[WebSocketEvents::class,'onClose']);
+
+        //启动时 清空在线用户列表
+        $register->add($register::onWorkerStart,function(\swoole_server $server,$workerId){
+            if($workerId==0){
+                WebSocketEvents::cleanOnlineUsers();
+            }
+        });
     }
 
     public static function onRequest(Request $request, Response $response): bool

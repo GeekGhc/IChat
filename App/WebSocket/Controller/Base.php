@@ -7,7 +7,6 @@ use App\Utility\Pool\RedisPoolObject;
 use EasySwoole\Component\Pool\PoolManager;
 use EasySwoole\Socket\AbstractInterface\Controller;
 
-
 Class Base extends Controller{
     private $redis;
 
@@ -30,11 +29,12 @@ Class Base extends Controller{
 
     /**
      * 获取当前用户
-     * @return mixed
+     * @return string
+     * @throws \Exception
      */
     public function currentUser(){
         $client = $this->caller()->getClient();
-        return $this->redis->hGet(App::REDIS_ONLINE_KEY,$client->getFd());
+        return $this->redis()->hGet(App::REDIS_ONLINE_KEY,$client->getFd());
     }
 
     /**

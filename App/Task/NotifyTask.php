@@ -8,11 +8,12 @@ class NotifyTask extends AbstractAsyncTask
 {
     protected function run($taskData, $taskId, $fromWorkerId, $flags = null)
     {
-        // TODO: Implement run() method.
+        return true;
     }
 
-    protected function finish($result, $task_id)
+    function finish($result, $task_id)
     {
+        echo "finished task id = ".$task_id;
         // TODO: Implement finish() method.
     }
 }

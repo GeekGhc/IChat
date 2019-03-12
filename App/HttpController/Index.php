@@ -28,7 +28,7 @@ class Index extends Controller
      */
     function index()
     {
-        \EasySwoole\EasySwoole\Logger::getInstance()->log("this is daat","notice");
+        \EasySwoole\EasySwoole\Logger::getInstance()->log("this is daat", "notice");
         $this->response()->withHeader('Content-type', 'text/html;charset=utf-8');
         $this->response()->write('<div style="text-align: center;margin-top: 30px"><h2>欢迎使用EASYSWOOLE</h2></div></br>');
         $this->response()->write('<div style="text-align: center">您现在看到的页面是默认的 Index 控制器的输出</div></br>');
@@ -71,5 +71,19 @@ class Index extends Controller
 //        $container->set("name",'GeekGhc');
 //        call_user_func($container->get("OnOpen"));
 
+        $server = Config::getInstance()->getConf('SYSTEM.WS_SERVER_PATH');
+        $vars = ['server' => rtrim($server, '/') . '/'];
+        ob_start();
+        extract($vars);
+        include dirname(__FILE__) . '/../Views/index.php';
+        $content = ob_get_contents();
+        $this->response()->write($content);
+
+    }
+
+    public function aa()
+    {
+        $res = TaskManager::async(new NotifyTask('init data'));
+        $this->response()->write($res);
     }
 }

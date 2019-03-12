@@ -1,13 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gehuachun
- * Date: 2019-03-03
- * Time: 22:57
- */
-
 namespace App\WebSocket;
-
 
 use App\Task\BroadcastTask;
 use App\Utility\App;
@@ -25,11 +17,11 @@ class WebSocketEvents
 {
     /**
      * 打开链接时  将用户fd存入Redis
-     * @param \swoole_server $server
+     * @param \swoole_websocket_server $server
      * @param \swoole_http_request $req
      * @throws \Exception
      */
-    static function onOpen(\swoole_server $server,\swoole_http_request $req){
+    static function onOpen(\swoole_websocket_server $server,\swoole_http_request $req){
         $redisPool = PoolManager::getInstance()->getPool(RedisPool::class);
         $redis = $redisPool->getObj();
         $username = $req->get['username']??'游客' . str_pad($req->fd, 4, '0', STR_PAD_LEFT);
