@@ -6,14 +6,16 @@ use EasySwoole\EasySwoole\Swoole\Task\AbstractAsyncTask;
 
 class NotifyTask extends AbstractAsyncTask
 {
-    protected function run($taskData, $taskId, $fromWorkerId, $flags = null)
+    function run($taskData, $taskId, $fromWorkerId, $flags = null)
     {
+        Logger::getInstance()->log("notify = ".$taskId);
+        Logger::getInstance()->log("fromWorkerId = ".$fromWorkerId);
         return true;
     }
 
     function finish($result, $task_id)
     {
-        echo "finished task id = ".$task_id;
+//        echo "finished task id = ".$task_id;
         // TODO: Implement finish() method.
     }
 }

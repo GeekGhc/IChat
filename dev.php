@@ -21,6 +21,8 @@ return [
             'task_max_request' => 1000,
             'document_root' => EASYSWOOLE_ROOT.'/Static',
             'enable_static_handler' => true,
+            'heartbeat_idle_time' => 600, # 10分钟无操作则掉线
+            'heartbeat_check_interval' => 60 # 每隔一分钟检查一次
         ],
     ],
     'TEMP_DIR' => null,

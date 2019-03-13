@@ -205,6 +205,7 @@
                     othis.release('index', 'online');
                     othis.websocketInstance.onmessage = function (ev) {
                         try {
+                            console.log("res = "+ev.data);
                             var data = JSON.parse(ev.data);
                             if (data.sendTime) {
                                 if (othis.up_recv_time + 10 * 1000 > (new Date(data.sendTime)).getTime()) {
@@ -286,6 +287,7 @@
                                 }
                             }
                         } catch (e) {
+                            console.log("error....")
                         }
                     };
                     othis.websocketInstance.onclose = function (ev) {
@@ -321,6 +323,7 @@
                 action = action || 'action';
                 params = params || {};
                 var message = {controller: controller, action: action, params: params}
+                console.log("send = "+JSON.stringify(message));
                 this.websocketInstance.send(JSON.stringify(message))
             },
             /**

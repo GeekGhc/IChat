@@ -27,6 +27,6 @@ Class Redis{
         if(!empty($conf['AUTH'])){
             $this->redis->auth($conf['AUTH']);
         }
-        return $this->redis;
+        return $this;
     }
 }

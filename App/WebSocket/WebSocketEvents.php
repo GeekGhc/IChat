@@ -47,7 +47,7 @@ class WebSocketEvents
                 //对用户单独发送欢迎消息
                 $runDays = intval((time()-($redis->get(APP::SYSTEM_RUNTIME_KEY)))/86400);
                 $message = new BroadcastAdmin();
-                $message->setContent("{$username}，欢迎乘坐EASYSWOOLE号特快列车，列车已稳定运行{$runDays}天，共计服务{$count}人次，请系好安全带，文明乘车");
+                $message->setContent("{$username}，系统已稳定运行{$runDays}天，共计服务{$count}人次");
                 $server->push($req->fd,$message->__toString());
             }
         }else{

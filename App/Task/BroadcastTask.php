@@ -5,6 +5,7 @@ use App\Utility\App;
 use App\Utility\Redis;
 use App\WebSocket\WebSocketAction;
 use EasySwoole\EasySwoole\Config;
+use EasySwoole\EasySwoole\Logger;
 use EasySwoole\EasySwoole\ServerManager;
 use EasySwoole\EasySwoole\Swoole\Task\AbstractAsyncTask;
 
@@ -23,7 +24,8 @@ Class BroadcastTask extends AbstractAsyncTask{
         $redis = Redis::getInstance()->getConnect();
         $users = $redis->hGetAll(App::REDIS_ONLINE_KEY);
 
-        $server = ServerManager::getInstance()->getSwooleServer();
+        /** @var \swoole_websocket_server $server */
+        $server = ServerManager::getInstance()->getSwooleServer();;
         foreach ($users as $fd=>$userInfo){
             $connection = $server->connection_info($fd);
             //用户正常在线则推送

@@ -25,7 +25,7 @@ Class WebSocketParser implements ParserInterface
             $payload = json_decode($raw,true);
             $class = isset($payload['controller'])?$payload['controller']:'index';
             $action = isset($payload['action'])?$payload['action']:'actionNotFound';
-            $params = isset($payload['[params'])?(array)$payload['params']:[];
+            $params = isset($payload['params'])?(array)$payload['params']:[];
 
             $controllerClass = "\\App\\WebSocket\\Controller\\".ucfirst($class);
             if(!class_exists($controllerClass)) $controllerClass = "\\App\\WebSocket\\Controller\\Index";
