@@ -1,7 +1,7 @@
 <?php
 namespace App\WebSocket\Controller;
 
-use App\Utility\App;
+use App\Utility\APP;
 use App\Utility\Pool\RedisPool;
 use App\Utility\Pool\RedisPoolObject;
 use EasySwoole\Component\Pool\PoolManager;
@@ -34,7 +34,7 @@ Class Base extends Controller{
      */
     public function currentUser(){
         $client = $this->caller()->getClient();
-        return $this->redis()->hGet(App::REDIS_ONLINE_KEY,$client->getFd());
+        return $this->redis()->hGet(APP::REDIS_ONLINE_KEY,$client->getFd());
     }
 
     /**

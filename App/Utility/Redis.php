@@ -21,11 +21,11 @@ Class Redis{
 
     function connect(): Redis
     {
-        $conf = Config::getInstance()->getConf("REDIS");
-        $this->redis->connect($conf['HOST'],$conf['PORT']);
+        $conf = Config::getInstance()->getConf("redis");
+        $this->redis->connect($conf['host'],$conf['port']);
         $this->redis->setOption(\Redis::OPT_SERIALIZER,\Redis::SERIALIZER_PHP);
-        if(!empty($conf['AUTH'])){
-            $this->redis->auth($conf['AUTH']);
+        if(!empty($conf['auth'])){
+            $this->redis->auth($conf['auth']);
         }
         return $this;
     }

@@ -2,8 +2,8 @@
 
 namespace App\HttpController;
 
+use App\Task\BroadcastTask;
 use App\Task\NotifyTask;
-use App\Task\TestTask;
 use App\Utility\Pool\MysqlPool;
 use App\Utility\Pool\MysqlPoolObject;
 use App\Utility\Pool\RedisPool;
@@ -84,7 +84,8 @@ class Index extends Controller
 
     public function aa()
     {
-        $res = TaskManager::async(new NotifyTask(),function(){});
+//        $res = TaskManager::async(new NotifyTask(),function(){});
+        $res = TaskManager::async(new BroadcastTask(['payload'=>'geekghc']),function(){});
         $this->response()->write($res);
     }
 }

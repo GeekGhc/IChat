@@ -22,7 +22,7 @@ Class BroadcastTask extends AbstractAsyncTask{
     function run($taskData, $taskId, $fromWorkerId, $flags = null)
     {
         $redis = Redis::getInstance()->getConnect();
-        $users = $redis->hGetAll(App::REDIS_ONLINE_KEY);
+        $users = $redis->hGetAll(APP::REDIS_ONLINE_KEY);
 
         /** @var \swoole_websocket_server $server */
         $server = ServerManager::getInstance()->getSwooleServer();;
@@ -43,7 +43,7 @@ Class BroadcastTask extends AbstractAsyncTask{
             $payload['avatar'] = $userInfo['avatar'];
             $redis->lPush(APP::REDIS_LAST_MESSAGE_KEY,json_encode($payload,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
             $max = Config::getInstance()->getConf('SYSTEM.LAST_MESSAGE_MAX');
-            $redis->lTrim(App::REDIS_LAST_MESSAGE_KEY,0,$max-1);
+            $redis->lTrim(APP::REDIS_LAST_MESSAGE_KEY,0,$max-1);
         }
         return true;
     }

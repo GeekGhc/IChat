@@ -8,8 +8,6 @@ class NotifyTask extends AbstractAsyncTask
 {
     function run($taskData, $taskId, $fromWorkerId, $flags = null)
     {
-        Logger::getInstance()->log("notify = ".$taskId);
-        Logger::getInstance()->log("fromWorkerId = ".$fromWorkerId);
         return true;
     }
 

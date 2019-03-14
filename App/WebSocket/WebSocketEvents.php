@@ -2,7 +2,7 @@
 namespace App\WebSocket;
 
 use App\Task\BroadcastTask;
-use App\Utility\App;
+use App\Utility\APP;
 use App\Utility\Pool\RedisPool;
 use App\Utility\Pool\RedisPoolObject;
 use App\WebSocket\Actions\Broadcast\BroadcastAdmin;
@@ -91,7 +91,7 @@ class WebSocketEvents
         $redisPool = PoolManager::getInstance()->getPool(RedisPool::class);
         $redis = $redisPool->getObj();
         if ($redis instanceof RedisPoolObject) {
-            $redis->set(App::SYSTEM_RUNTIME_KEY,time());
+            $redis->set(APP::SYSTEM_RUNTIME_KEY,time());
             $redis->del(APP::SYSTEM_CON_COUNT_KEY);
             if($redis->exists(APP::REDIS_ONLINE_KEY)){
                 $clear =  $redis->del(APP::REDIS_ONLINE_KEY);
