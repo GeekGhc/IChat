@@ -34,7 +34,7 @@ class WebSocketEvents
             //全频道通知新用户上线
             $message = new UserInRoom();
             $message->setInfo($info);
-            TaskManager::async(new BroadcastTask(['payload'=>$message->__toString(),'fromFd'=>$req->fd]));
+            TaskManager::async(new BroadcastTask(['payload'=>$message->__toString(),'fromFd'=>$req->fd]),function(){});
 
             if(empty($req->get['is_reconnection']) || $req->get['is_reconnection']=='0'){
                 //发送最后的n条消息
