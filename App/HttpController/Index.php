@@ -81,11 +81,4 @@ class Index extends Controller
         $this->response()->write($content);
 
     }
-
-    public function aa()
-    {
-//        $res = TaskManager::async(new NotifyTask(),function(){});
-        $res = TaskManager::async(new BroadcastTask(['payload'=>'geekghc']),function(){});
-        $this->response()->write($res);
-    }
 }
